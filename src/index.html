@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+</head>
+<style>
+
+    :root {
+        --color-background: #404040;
+        --color-accent: #ffa500;
+        --color-action-main: #808080;
+        --color-action-dark: #656565;
+        --color-text: #ffffff;
+        --color-background-main: color-mix(in srgb, var(--color-background), #000 30%);
+        --color-action-dark-hover: color-mix(in srgb, var(--color-action-dark), #fff 10%);
+        --color-action-main-hover: color-mix(in srgb, var(--color-action-main), #fff 10%);
+        --color-accent-hover: color-mix(in srgb, var(--color-accent), #fff 10%);
+        background-color: var(--color-background-main);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--color-text);
+    }
+
+    header {
+        display: flex;
+        width: 100vw;
+        padding: 2em;
+        justify-content: space-between;
+    }
+
+    footer{
+        padding: 1em 2em;
+    }
+
+    .calculator {
+        width: 50vw;
+        margin: auto;
+        border-radius: 3vw;
+        overflow: hidden;
+        color: var(--color-text);
+    }
+
+    .calculator-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        background-color: var(--color-background);
+        gap: 0.2vw;
+    }
+
+    #zero {
+        grid-area: 5 / 1 / 6 / 3;
+    }
+
+    .calculator__input {
+        width: 100%;
+        background-color: var(--color-background);
+        box-shadow: none;
+        font-size: 10vw;
+        text-align: right;
+        border: none;
+        outline: none;
+        padding: 2vw
+    }
+
+    .theme-change {
+        background-color: var(--color-accent);
+        border: none;
+        border-radius: 0.5vw;
+        padding: 0.5vw 1vw;
+        cursor: pointer;
+    }
+
+    input:focus {
+        border: none;
+        outline: none;
+    }
+
+    input::-webkit-inner-spin-button,
+    input::-webkit-outer-spin-button {
+        appearance: none;
+    }
+
+    .calculator-actions__action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4vw;
+        background-color: var(--color-action-main);
+        font-size: 3vw;
+        transition: all 0.1s ease-in-out;
+        border-radius: 0.1vw;
+        border: 0px;
+        cursor: pointer;
+    }
+
+    .calculator-actions__action:hover {
+        background-color: var(--color-action-main-hover);
+    }
+
+    .calculator-actions__action_highlighted {
+        background-color: var(--color-accent);
+    }
+
+    .calculator-actions__action_highlighted:hover {
+        background-color: var(--color-accent-hover);
+    }
+
+    .calculator-actions__action_dark {
+        background-color: var(--color-action-dark);
+    }
+
+    .calculator-actions__action_dark:hover {
+        background-color: var(--color-action-dark-hover);
+    }
+
+    dialog {
+        padding: 5vw;
+        margin: auto;
+        background-color: var(--color-background);
+        border: 1px solid var(--color-action-dark);
+        border-radius: 2vw;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+    }
+
+    label{
+        display: flex;
+        align-items: center;
+        gap:10px;
+    }
+
+    #buttons{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        gap: 1vw;
+    }
+
+    #buttons button:nth-child(1){
+        background-color: var(--color-accent);
+    }
+
+    #buttons button:nth-child(2){
+        background-color: var(--color-action-main);
+    }
+    #buttons button{
+        width:100%;
+        padding: 5px 10px;
+        border: 0px;
+        border-radius: 0.5vw;
+    }
+
+    #history {
+        padding: 1em;
+        color: var(--color-action-main);
+        background: var(--color-background);
+    }
+
+    hr {
+       border: 1px solid var(--color-action-dark-hover) 
+    }
+
+</style>
+
+<body>
+    <header>
+        <h1>
+            Calculator
+        </h1>
+        <button type="button" class="theme-change">
+            Change theme
+        </button>
+    </header>
+    <main>
+        <div id="calculator" class="calculator">
+            <p id="history"></p>
+            <hr>
+            <input type="text" disabled class="calculator__input">
+            <div class="calculator-actions">
+                <button type="button" id="clear"
+                    class="calculator-actions__action calculator-actions__action_dark">C</button>
+                <button type="button" id="change-symbol"
+                    class="calculator-actions__action calculator-actions__action_dark">+/-</button>
+                <button type="button" id="percent"
+                    class="calculator-actions__action calculator-actions__action_dark">%</button>
+                <button type="button" id="division"
+                    class="calculator-actions__action calculator-actions__action_highlighted">÷</button>
+                <button type="button" id="seven" class="calculator-actions__action">7</button>
+                <button type="button" id="eight" class="calculator-actions__action">8</button>
+                <button type="button" id="nine" class="calculator-actions__action">9</button>
+                <button type="button" id="multiplication"
+                    class="calculator-actions__action calculator-actions__action_highlighted">×</button>
+                <button type="button" id="four" class="calculator-actions__action">4</button>
+                <button type="button" id="five" class="calculator-actions__action">5</button>
+                <button type="button" id="six" class="calculator-actions__action">6</button>
+                <button type="button" id="minus"
+                    class="calculator-actions__action calculator-actions__action_highlighted">-</button>
+                <button type="button" id="one" class="calculator-actions__action">1</button>
+                <button type="button" id="two" class="calculator-actions__action">2</button>
+                <button type="button" id="three" class="calculator-actions__action">3</button>
+                <button type="button" id="sum"
+                    class="calculator-actions__action calculator-actions__action_highlighted">+</button>
+                <button type="button" id="zero" class="calculator-actions__action">0</button>
+                <button type="button" id="point" class="calculator-actions__action">,</button>
+                <button type="button" id="equal"
+                    class="calculator-actions__action calculator-actions__action_highlighted">=</button>
+            </div>
+        </div>
+    </main>
+    <dialog>
+        <form>
+            <label for="backround">
+                Background:
+                <input id="background" name="background" type="color">
+            </label>
+            <label for="accent">
+                Accent color:
+                <input id="accent" name="accent" type="color">
+            </label>
+            <label for="action-main">
+                Action main color:
+                <input id="action-main" name="action-main" type="color">
+            </label>
+            <label for="action-dark">
+                Action dark color:
+                <input id="action-dark" name="action-dark" type="color">
+            </label>
+            <label for="color-text">
+                Text color:
+                <input id="color-text" name="color-text" type="color">
+            </label>
+            <div id="buttons">
+                <button id="save-modal" type="submit">Save</button>
+                <button id="close-modal" type="button">Close</button>
+            </div>
+        </form>
+    </dialog>
+    <footer>
+        Tretyak Vyacheslav, 2025
+    </footer>
+    <script src="scripts/index.js" type="module"></script>
+</body>
+
+</html>
