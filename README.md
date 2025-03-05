@@ -12,7 +12,9 @@ innowise-internship-calculator
       calculator.js   # Contains the Calculator class
       index.js        # Initializes the Calculator
       theme-change.js # Handles theme change functionality
+    index.css         # CSS styles
     index.html        # Main HTML document for the application
+  .dockeringnore      # Specifies files to ignore in Docker
   .gitignore          # Specifies files to ignore in Git
   .prettierrc         # Prettier configuration file
   eslint.config.mjs   # ESLint configuration file
@@ -21,6 +23,7 @@ innowise-internship-calculator
   webpack.config.js   # Webpack configuration file
   Dockerfile          # Docker configuration file
   docker-compose.yml  # Docker Compose configuration file
+  Makefile            # Makefile for project tasks
 ```
 
 ## Getting Started
@@ -35,12 +38,12 @@ To get started with the project, follow these steps:
 
 2. **Install dependencies:**
    ```
-   npm install
+   make install
    ```
 
 3. **Build the project:**
    ```
-   npm run build
+   make build
    ```
 
 4. **Open the application:**
@@ -52,17 +55,11 @@ To run the development server, follow these steps:
 
 1. **Start the development server:**
    ```
-   npm run dev
+   make dev
    ```
 
 2. **Open the application:**
    Open `http://localhost:3000` in your web browser to view the calculator.
-
-## Features
-
-- Basic arithmetic operations: addition, subtraction, multiplication, and division.
-- Ability to change the theme colors of the calculator.
-- Responsive design for better usability on different devices.
 
 ## Running with Docker
 
@@ -70,16 +67,22 @@ To run the application using Docker, follow these steps:
 
 1. **Build the Docker image:**
    ```
-   docker-compose build
+   make docker-build
    ```
 
 2. **Run the Docker container:**
    ```
-   docker-compose up
+   make docker-up
    ```
 
 3. **Open the application:**
    Open `http://localhost` in your web browser to view the calculator.
+
+## Features
+
+- Basic arithmetic operations: addition, subtraction, multiplication, and division.
+- Ability to change the theme colors of the calculator.
+- Responsive design for better usability on different devices.
 
 ## License
 
