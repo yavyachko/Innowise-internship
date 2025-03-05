@@ -2,9 +2,7 @@ export class Calculator {
   constructor() {
     this.currentValue = "0";
     this.previousValue = null;
-    this.pendingValue = null;
     this.operation = null;
-    this.pendingOperation = null;
     this.display = document.querySelector(".calculator__input");
     this.actions = document.querySelectorAll(".calculator-actions__action");
   }
@@ -15,20 +13,29 @@ export class Calculator {
         const actionType = action.id;
         const actionValue = action.textContent;
 
-        if (!isNaN(actionValue)) {
-          this.appendNumber(actionValue);
-        } else if (actionType === "clear") {
-          this.clear();
-        } else if (actionType === "equal") {
-          this.compute();
-        } else if (actionType === "point") {
-          this.appendPoint();
-        } else if (actionType === "change-symbol") {
-          this.changeSymbol();
-        } else if (actionType === "percent") {
-          this.percent();
-        } else {
-          this.chooseOperation(actionType);
+        switch (actionType) {
+          case "clear":
+            this.clear();
+            break;
+          case "equal":
+            this.compute();
+            break;
+          case "point":
+            this.appendPoint();
+            break;
+          case "change-symbol":
+            this.changeSymbol();
+            break;
+          case "percent":
+            this.percent();
+            break;
+          default:
+            if (!isNaN(actionValue)) {
+              this.appendNumber(actionValue);
+            } else {
+              this.chooseOperation(actionType);
+            }
+            break;
         }
 
         this.updateDisplay();
@@ -80,10 +87,12 @@ export class Calculator {
 
   compute() {
     if (this.previousValue === null || this.currentValue === "") return;
+
     const prev = parseFloat(this.previousValue);
     const current = parseFloat(this.currentValue);
     let result;
     let operationSymbol;
+
     switch (this.operation) {
       case "sum":
         result = prev + current;
@@ -104,10 +113,12 @@ export class Calculator {
       default:
         return;
     }
+
     this.currentValue = result.toString();
     this.previousValue = null;
     this.operation = null;
     const historyElement = document.getElementById("history");
+
     historyElement.textContent = `${prev} ${operationSymbol} ${current} = ${result}`;
   }
 

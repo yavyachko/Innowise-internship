@@ -1,4 +1,3 @@
-// filepath: /d:/WorkFlow/Innowise internship/webpack.config.js
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
@@ -7,7 +6,7 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
-    clean: true, // Clean the output directory before emit
+    clean: true,
   },
   module: {
     rules: [
@@ -17,6 +16,10 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },
@@ -32,6 +35,6 @@ module.exports = {
     },
     compress: true,
     port: 3000,
-    open: true, // Automatically open the browser
+    open: true,
   },
 };
