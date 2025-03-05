@@ -29,7 +29,7 @@ To get started with the project, follow these steps:
 
 1. **Clone the repository:**
    ```
-   git clone <repository-url>
+   git clone https://github.com/yavyachko/Innowise-internship
    cd innowise-internship-calculator
    ```
 
