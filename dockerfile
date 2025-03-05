@@ -1,4 +1,4 @@
-# Stage 1: Build the application
+# Build the application
 FROM node:16 AS build
 
 # Set the working directory inside the container
@@ -16,7 +16,7 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Stage 2: Serve the application using nginx
+# Serve the application using nginx
 FROM nginx:alpine
 
 # Copy the built files from the previous stage to the nginx html directory
