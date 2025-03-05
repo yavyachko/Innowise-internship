@@ -18,4 +18,8 @@ export default [
     },
   },
   configPrettier,
+  {
+    files: ["webpack.config.js"],
+    languageOptions: { globals: globals.node },
+  },
 ];

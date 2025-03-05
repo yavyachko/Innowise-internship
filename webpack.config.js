@@ -1,38 +1,37 @@
-import { resolve, join } from "path";
-import HtmlWebpackPlugin from "html-webpack-plugin";
+// filepath: /d:/WorkFlow/Innowise internship/webpack.config.js
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-export const entry = {
-  main: "./src/scripts/index.js",
-};
-export const output = {
-  filename: "bundle.js",
-  path: resolve(__dirname, "dist"),
-  clean: true,
-};
-export const module = {
-  rules: [
-    {
-      test: /\.js$/,
-      exclude: /node_modules/,
-      use: {
-        loader: "babel-loader",
-        options: {
-          presets: ["@babel/preset-env"],
+module.exports = {
+  entry: "./src/scripts/index.js",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true, // Clean the output directory before emit
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
         },
       },
-    },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html",
+      filename: "index.html",
+    }),
   ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "src"),
+    },
+    compress: true,
+    port: 3000,
+    open: true, // Automatically open the browser
+  },
 };
-export const plugins = [
-  new HtmlWebpackPlugin({
-    template: './src/index.html', // Шаблон для HTML файла
-    filename: 'index.html', // Имя выходного HTML файла
-  }),
-];
-export const devtool = 'source-map';
-export const devServer = {
-  contentBase: join(__dirname, 'dist'), // Папка для статических файлов
-  compress: true, // Включение сжатия
-  port: 9000, // Порт для dev сервера
-};
-export const mode = 'development';
