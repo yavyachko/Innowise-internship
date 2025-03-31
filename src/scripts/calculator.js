@@ -7,48 +7,13 @@ export class Calculator {
     this.actions = document.querySelectorAll(".calculator-actions__action");
   }
 
-  init() {
-    this.actions.forEach(action => {
-      action.addEventListener("click", () => {
-        const actionType = action.id;
-        const actionValue = action.textContent;
-
-        switch (actionType) {
-          case "clear":
-            this.clear();
-            break;
-          case "equal":
-            this.compute();
-            break;
-          case "point":
-            this.appendPoint();
-            break;
-          case "change-symbol":
-            this.changeSymbol();
-            break;
-          case "percent":
-            this.percent();
-            break;
-          default:
-            if (!isNaN(actionValue)) {
-              this.appendNumber(actionValue);
-            } else {
-              this.chooseOperation(actionType);
-            }
-            break;
-        }
-
-        this.updateDisplay();
-      });
-    });
-  }
-
   appendNumber(number) {
     if (this.currentValue === "0") {
       this.currentValue = number;
     } else {
       this.currentValue += number;
     }
+    this.updateDisplay();
   }
 
   appendPoint() {
@@ -61,6 +26,7 @@ export class Calculator {
     this.currentValue = "0";
     this.previousValue = null;
     this.operation = null;
+    this.updateDisplay();
     const historyElement = document.getElementById("history");
     historyElement.textContent = "";
   }
@@ -120,6 +86,7 @@ export class Calculator {
     const historyElement = document.getElementById("history");
 
     historyElement.textContent = `${prev} ${operationSymbol} ${current} = ${result}`;
+    this.updateDisplay();
   }
 
   updateDisplay() {
