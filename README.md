@@ -10,39 +10,38 @@ This project is a simple calculator application built using JavaScript, HTML, an
 
 ```
 innowise-internship-calculator
-   dist                     # Compiled and bundled files
-   src                      # Source files
-      scripts               # JavaScript files
-         calculator.js      # Contains the Calculator class
-         index.js           # Initializes the Calculator
-         utils              # Utility scripts
-            theme-change.js # Handles theme change functionality
-         commands           # Command pattern implementation
-            invoker.js      # Invoker class
-            commands        # Command classes
-               append-number-command.js  # Appends a number
-               append-point-command.js   # Appends a decimal point
-               change-sign-command.js # Changes the sign of a number
-               clear-command.js          # Clears the calculator
-               compute-command.js        # Performs a computation
-               memory-add-command.js     # Adds to memory
-               memory-clear-command.js   # Clears memory
-               memory-minus-command.js   # Subtracts from memory
-               memory-read-command.js    # Reads from memory
-               operation-command.js      # Handles operations
-               index.js                  # Exports all commands
-      index.html        # Main HTML document for the application
-      index.css         # Global styles
-   .dockerignore        # Specifies files to ignore in Docker
-   .gitignore           # Specifies files to ignore in Git
-   .prettierrc          # Prettier configuration file
-   eslint.config.mjs    # ESLint configuration file
-   package.json         # npm configuration file
-   README.md            # Project documentation
-   webpack.config.js    # Webpack configuration file
-   Dockerfile           # Docker configuration file
-   docker-compose.yml   # Docker Compose configuration file
-   Makefile             # Makefile for project tasks
+   src                               # Source files
+     scripts                         # JavaScript files
+        calculator.js                # Contains the Calculator class
+        index.js                     # Initializes the Calculator
+        utils                        # Utility scripts
+         theme-change.js             # Handles theme change functionality
+        commands                     # Command pattern implementation
+         invoker.js                  # Invoker class
+         commands                    # Command classes
+           append-number-command.js  # Appends a number
+           append-point-command.js   # Appends a decimal point
+           change-sign-command.js    # Changes the sign of a number
+           clear-command.js          # Clears the calculator
+           compute-command.js        # Performs a computation
+           memory-add-command.js     # Adds to memory
+           memory-clear-command.js   # Clears memory
+           memory-minus-command.js   # Subtracts from memory
+           memory-read-command.js    # Reads from memory
+           operation-command.js      # Handles operations
+           index.js                  # Exports all commands
+     index.html                      # Main HTML document for the application
+     index.css                       # Global styles
+   .dockerignore                     # Specifies files to ignore in Docker
+   .gitignore                        # Specifies files to ignore in Git
+   .prettierrc                       # Prettier configuration file
+   eslint.config.mjs                 # ESLint configuration file
+   package.json                      # npm configuration file
+   README.md                         # Project documentation
+   webpack.config.js                 # Webpack configuration file
+   Dockerfile                        # Docker configuration file
+   docker-compose.yml                # Docker Compose configuration file
+   Makefile                          # Makefile for project tasks
 ```
 
 ## How to Run This Calculator App
