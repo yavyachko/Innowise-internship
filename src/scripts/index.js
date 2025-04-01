@@ -1,10 +1,7 @@
 import { Calculator } from "./calculator.js";
 import { Invoker } from "./commands/invoker.js";
-import { AppendNumberCommand } from "./commands/commands/append-number-command.js";
-import { ClearCommand } from "./commands/commands/clear-command.js";
-import { ComputeCommand } from "./commands/commands/compute-command.js";
-import { OperationCommand } from "./commands/commands/operation-command.js";
-import { AppendPointCommand } from "./commands/commands/append-point-command.js";
+import * as Commands from "./commands/commands/index.js";
+
 import "./theme-change.js";
 
 const calculator = new Calculator();
@@ -17,21 +14,38 @@ document.querySelectorAll(".calculator-actions__action").forEach(action => {
 
     switch (actionType) {
       case "clear":
-        invoker.executeCommand(new ClearCommand(calculator));
+        invoker.executeCommand(new Commands.ClearCommand(calculator));
         break;
       case "equal":
-        invoker.executeCommand(new ComputeCommand(calculator));
+        invoker.executeCommand(new Commands.ComputeCommand(calculator));
         break;
       case "point":
-        invoker.executeCommand(new AppendPointCommand(calculator));
+        invoker.executeCommand(new Commands.AppendPointCommand(calculator));
+        break;
+      case "changeSign":
+        invoker.executeCommand(new Commands.ChangeSignCommand(calculator));
+        break;
+      case "memoryClear":
+        invoker.executeCommand(new Commands.MemoryClearCommand(calculator));
+        break;
+      case "memoryRead":
+        invoker.executeCommand(new Commands.MemoryReadCommand(calculator));
+        break;
+      case "memoryAdd":
+        invoker.executeCommand(new Commands.MemoryAddCommand(calculator));
+        break;
+      case "memoryMinus":
+        invoker.executeCommand(new Commands.MemoryMinusCommand(calculator));
         break;
       default:
         if (!isNaN(actionValue)) {
           invoker.executeCommand(
-            new AppendNumberCommand(calculator, actionValue),
+            new Commands.AppendNumberCommand(calculator, actionValue),
           );
         } else {
-          invoker.executeCommand(new OperationCommand(calculator, actionType));
+          invoker.executeCommand(
+            new Commands.OperationCommand(calculator, actionType),
+          );
         }
         break;
     }

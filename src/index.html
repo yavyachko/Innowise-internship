@@ -44,9 +44,10 @@
             <hr>
             <input type="text" disabled class="calculator__input">
             <div class="calculator-actions">
-                <button type="button" id="clear" data-mode="C"
+                <button type="button" id="clear"
                     class="calculator-actions__action calculator-actions__action_dark">C</button>
-                <button type="button" id="change-symbol"
+
+                <button type="button" id="changeSign"
                     class="calculator-actions__action calculator-actions__action_dark">+/-</button>
                 <button type="button" id="percent"
                     class="calculator-actions__action calculator-actions__action_dark">%</button>
@@ -71,6 +72,25 @@
                 <button type="button" id="point" class="calculator-actions__action">,</button>
                 <button type="button" id="equal"
                     class="calculator-actions__action calculator-actions__action_highlighted">=</button>
+            </div>
+            <div class="calculator_actions__additional">
+                <button type="button" id="square"
+                    class="calculator-actions__action calculator-actions__action_dark">x<sup>2</sup></button>
+                <button type="button" id="cube"
+                    class="calculator-actions__action calculator-actions__action_dark">x<sup>3</sup></button>
+                <button type="button" id="power"
+                    class="calculator-actions__action calculator-actions__action_dark">x<sup>y</sup></button>
+                <button type="button" id="powerOfTen"
+                    class="calculator-actions__action calculator-actions__action_dark">10<sup>x</sup></button>
+                <button type="button" id="squareRoot" class="calculator-actions__action">√x</button>
+                <button type="button" id="cubeRoot" class="calculator-actions__action">∛x</button>
+                <button type="button" id="nthRoot" class="calculator-actions__action"><sup>n</sup>&#8730;x</button>
+                <button type="button" id="factorial" class="calculator-actions__action">x!</button>
+                <button type="button" id="reciprocal" class="calculator-actions__action">1/x</button>
+                <button type="button" id="memoryClear" class="calculator-actions__action">MC</button>
+                <button type="button" id="memoryAdd" class="calculator-actions__action">M+</button>
+                <button type="button" id="memoryMinus" class="calculator-actions__action">M-</button>
+                <button type="button" id="memoryRead" class="calculator-actions__action">MR</button>
             </div>
         </div>
     </main>
