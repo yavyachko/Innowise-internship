@@ -5,6 +5,21 @@ export class OperationCommand {
   }
 
   execute() {
-    this.calculator.chooseOperation(this.operation);
+    const unaryOperations = [
+      "square",
+      "cube",
+      "powerOfTen",
+      "reciprocal",
+      "squareRoot",
+      "cubeRoot",
+      "factorial",
+      "percent",
+    ];
+    if (unaryOperations.includes(this.operation)) {
+      this.calculator.chooseOperation(this.operation);
+      this.calculator.compute();
+    } else {
+      this.calculator.chooseOperation(this.operation);
+    }
   }
 }

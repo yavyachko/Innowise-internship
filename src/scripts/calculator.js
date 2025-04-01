@@ -156,20 +156,14 @@ export class Calculator {
     const historyElement = document.getElementById("history");
 
     if (unaryOperations.includes(this.operation)) {
-      this.currentValue = result.toString();
-      this.previousValue = null;
-      this.operation = null;
-      this.updateDisplay();
       historyElement.textContent = ` ${operationSymbol}${prev} = ${result}`;
-      return;
     } else {
-      this.currentValue = result.toString();
-      this.previousValue = null;
-      this.operation = null;
-      this.updateDisplay();
       historyElement.textContent = `${prev} ${operationSymbol} ${current || ""} = ${result}`;
     }
 
+    this.currentValue = result.toString();
+    this.previousValue = null;
+    this.operation = null;
     this.updateDisplay();
   }
 
