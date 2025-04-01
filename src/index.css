@@ -170,6 +170,7 @@ label{
 
 #history {
     padding: 1.5em;
+    font-size: 1.2vw;
     color: var(--color-action-main);
     background: var(--color-background);
 }
