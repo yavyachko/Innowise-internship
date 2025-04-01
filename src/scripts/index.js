@@ -2,7 +2,7 @@ import { Calculator } from "./calculator.js";
 import { Invoker } from "./commands/invoker.js";
 import * as Commands from "./commands/commands/index.js";
 
-import "./theme-change.js";
+import "./utils/theme-change.js";
 
 const calculator = new Calculator();
 const invoker = new Invoker();

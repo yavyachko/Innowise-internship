@@ -1,4 +1,4 @@
-import { BasicOperations } from "./BasicOperations.js";
+import { BasicOperations } from "./helpers/BasicOperations.js";
 
 export class Calculator {
   constructor() {
