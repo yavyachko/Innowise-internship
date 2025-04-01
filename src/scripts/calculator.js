@@ -56,10 +56,6 @@ export class Calculator {
     this.updateDisplay();
   }
 
-  percent() {
-    this.currentValue = (parseFloat(this.currentValue) / 100).toString();
-  }
-
   chooseOperation(operation) {
     if (this.currentValue === "") return;
 
@@ -112,23 +108,27 @@ export class Calculator {
           break;
         case "powerOfTen":
           result = BasicOperations.powerOfTen(prev);
-          operationSymbol = "10^x";
+          operationSymbol = "10^";
           break;
         case "reciprocal":
           result = BasicOperations.reciprocal(prev);
-          operationSymbol = "1/x";
+          operationSymbol = "1/";
           break;
         case "squareRoot":
           result = BasicOperations.squareRoot(prev);
-          operationSymbol = "√x";
+          operationSymbol = "√";
           break;
         case "cubeRoot":
           result = BasicOperations.cubeRoot(prev);
-          operationSymbol = "∛x";
+          operationSymbol = "∛";
+          break;
+        case "percent":
+          result = BasicOperations.percent(prev);
+          operationSymbol = "%x";
           break;
         case "nthRoot":
           result = BasicOperations.nthRoot(prev, current);
-          operationSymbol = `&#8731;${current}`;
+          operationSymbol = `√`;
           break;
         case "factorial":
           result = BasicOperations.factorial(prev);
@@ -142,12 +142,34 @@ export class Calculator {
       return;
     }
 
-    this.currentValue = result.toString();
-    this.previousValue = null;
-    this.operation = null;
+    const unaryOperations = [
+      "square",
+      "cube",
+      "powerOfTen",
+      "reciprocal",
+      "squareRoot",
+      "cubeRoot",
+      "factorial",
+      "percent",
+    ];
+
     const historyElement = document.getElementById("history");
 
-    historyElement.textContent = `${prev} ${operationSymbol} ${current || ""} = ${result}`;
+    if (unaryOperations.includes(this.operation)) {
+      this.currentValue = result.toString();
+      this.previousValue = null;
+      this.operation = null;
+      this.updateDisplay();
+      historyElement.textContent = ` ${operationSymbol}${prev} = ${result}`;
+      return;
+    } else {
+      this.currentValue = result.toString();
+      this.previousValue = null;
+      this.operation = null;
+      this.updateDisplay();
+      historyElement.textContent = `${prev} ${operationSymbol} ${current || ""} = ${result}`;
+    }
+
     this.updateDisplay();
   }
 
