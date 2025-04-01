@@ -37,7 +37,7 @@ header {
     justify-content: space-between;
 }
 
-footer{
+footer {
     padding: 1em 2em;
 }
 
@@ -58,20 +58,50 @@ footer{
     gap: 0.2vw;
 }
 
-.calculator_actions__additional {
+.calculator-actions_additional {
     margin-top: 0.2vw;
-    width: 100%;
-    display: grid;
+    flex-wrap: wrap;
+    display: flex;
+    flex-basis: calc(25% - 0.2vw);
+
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;
     background-color: var(--color-background);
     gap: 0.2vw;
+
 }
 
-#zero {
+.calculator-actions_additional {
+
+    height: 0;
+
+    .calculator-actions__action {
+        padding: 4vw 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-basis: calc(25% - 0.2vw*4);
+        flex-grow: 1;
+        flex-shrink: 0;
+    }
+    
+    .calculator-actions__action:nth-last-child(1), .calculator-actions__action:nth-last-child(2) {
+        flex-basis: calc(25% - 0.2vw*5);
+        flex-grow: 2;
+        flex-basis: calc(50% - 0.2vw*5);
+    }
+}
+
+.calculator-actions__action svg {
+    width: 5vw;
+    height: auto;
+    fill: var(--color-text);
+}
+
+/* #zero {
     grid-area: 5 / 1 / 6 / 3;
 }
-
+ */
 .calculator__input {
     width: 100%;
     background-color: var(--color-background);
@@ -141,28 +171,29 @@ form {
     gap: 2vw;
 }
 
-label{
+label {
     display: flex;
     align-items: center;
-    gap:10px;
+    gap: 10px;
 }
 
-#buttons{
+#buttons {
     display: flex;
     width: 100%;
     justify-content: center;
     gap: 1vw;
 }
 
-#buttons button:nth-child(1){
+#buttons button:nth-child(1) {
     background-color: var(--color-accent);
 }
 
-#buttons button:nth-child(2){
+#buttons button:nth-child(2) {
     background-color: var(--color-action-main);
 }
-#buttons button{
-    width:100%;
+
+#buttons button {
+    width: 100%;
     padding: 5px 10px;
     border: 0px;
     border-radius: 0.5vw;
@@ -176,5 +207,5 @@ label{
 }
 
 hr {
-   border: 1px solid var(--color-action-dark-hover) 
+    border: 1px solid var(--color-action-dark-hover)
 }

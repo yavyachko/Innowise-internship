@@ -8,6 +8,7 @@ export class Calculator {
     this.memory = 0;
     this.display = document.querySelector(".calculator__input");
     this.actions = document.querySelectorAll(".calculator-actions__action");
+    this.isResult = true;
   }
 
   memoryClear() {
@@ -28,7 +29,8 @@ export class Calculator {
   }
 
   appendNumber(number) {
-    if (this.currentValue === "0") {
+    if (this.currentValue === "0" || this.isResult) {
+      this.isResult = false;
       this.currentValue = number;
     } else {
       this.currentValue += number;
@@ -57,6 +59,8 @@ export class Calculator {
   }
 
   chooseOperation(operation) {
+    this.isResult = false;
+
     if (this.currentValue === "") return;
 
     if (this.previousValue !== null) {
@@ -124,7 +128,7 @@ export class Calculator {
           break;
         case "percent":
           result = BasicOperations.percent(prev);
-          operationSymbol = "%x";
+          operationSymbol = "%";
           break;
         case "nthRoot":
           result = BasicOperations.nthRoot(prev, current);
@@ -142,26 +146,24 @@ export class Calculator {
       return;
     }
 
-    const unaryOperations = [
-      "square",
-      "cube",
+    const preOperand = [
       "powerOfTen",
       "reciprocal",
       "squareRoot",
       "cubeRoot",
-      "factorial",
       "percent",
     ];
 
     const historyElement = document.getElementById("history");
 
-    if (unaryOperations.includes(this.operation)) {
+    if (preOperand.includes(this.operation)) {
       historyElement.textContent = ` ${operationSymbol}${prev} = ${result}`;
     } else {
       historyElement.textContent = `${prev} ${operationSymbol} ${current || ""} = ${result}`;
     }
 
     this.currentValue = result.toString();
+    this.isResult = true;
     this.previousValue = null;
     this.operation = null;
     this.updateDisplay();
