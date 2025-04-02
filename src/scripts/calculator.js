@@ -33,7 +33,17 @@ export class Calculator {
       this.isResult = false;
       this.currentValue = number;
     } else {
+      this.previousValue = this.currentValue;
       this.currentValue += number;
+    }
+    this.updateDisplay();
+  }
+
+  removeLastDigit() {
+    if (this.currentValue.length > 1) {
+      this.currentValue = this.currentValue.slice(0, -1);
+    } else {
+      this.currentValue = "0";
     }
     this.updateDisplay();
   }

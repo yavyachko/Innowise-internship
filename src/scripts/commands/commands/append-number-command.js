@@ -7,4 +7,8 @@ export class AppendNumberCommand {
   execute() {
     this.calculator.appendNumber(this.number);
   }
+
+  undo() {
+    this.calculator.removeLastDigit();
+  }
 }

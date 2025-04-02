@@ -7,4 +7,11 @@ export class Invoker {
     command.execute();
     this.history.push(command);
   }
+
+  undoLastCommand() {
+    const lastCommand = this.history.pop();
+    if (lastCommand && lastCommand.undo) {
+      lastCommand.undo();
+    }
+  }
 }

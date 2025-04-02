@@ -69,6 +69,8 @@ footer {
     flex-direction: column;
     max-height: 40%;
     flex-basis: calc(25% - 0.2vw);
+    border-radius: 2vw 0 0 2vw;
+    overflow: hidden;
 
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: auto;

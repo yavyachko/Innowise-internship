@@ -14,6 +14,8 @@ document.querySelectorAll(".calculator-actions__action").forEach(action => {
     const actionValue = action.textContent;
 
     switch (actionType) {
+      case "calculatorWide":
+        return;
       case "clear":
         invoker.executeCommand(new Commands.ClearCommand(calculator));
         break;
@@ -37,6 +39,9 @@ document.querySelectorAll(".calculator-actions__action").forEach(action => {
         break;
       case "memoryMinus":
         invoker.executeCommand(new Commands.MemoryMinusCommand(calculator));
+        break;
+      case "undo":
+        invoker.undoLastCommand();
         break;
       default:
         if (!isNaN(actionValue)) {
