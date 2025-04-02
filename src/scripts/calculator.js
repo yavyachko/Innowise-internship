@@ -33,7 +33,6 @@ export class Calculator {
       this.isResult = false;
       this.currentValue = number;
     } else {
-      this.previousValue = this.currentValue;
       this.currentValue += number;
     }
     this.updateDisplay();
