@@ -79,6 +79,10 @@ test("должен правильно вычислять корень n-й ст�
   expect(() => BasicOperations.nthRoot(-16, 2)).toThrow(
     "Even root of a negative number is not allowed!",
   );
+  expect(BasicOperations.nthRoot(-27, 3)).toBe(-3);
+  expect(() => BasicOperations.nthRoot(8, -3)).toThrow(
+    "Non-positive root is not allowed!",
+  );
 });
 
 test("должен правильно вычислять процент", () => {

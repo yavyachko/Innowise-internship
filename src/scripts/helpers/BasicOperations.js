@@ -59,8 +59,10 @@ export class BasicOperations {
   static nthRoot(a, n) {
     if (a < 0 && n % 2 === 0) {
       throw new Error("Even root of a negative number is not allowed!");
+    } else if (n <= 0) {
+      throw new Error("Non-positive root is not allowed!");
     }
-    return a ** (1 / n);
+    return a < 0 ? -((-a) ** (1 / n)) : a ** (1 / n);
   }
 
   static factorial(n) {
