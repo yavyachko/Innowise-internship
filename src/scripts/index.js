@@ -3,6 +3,7 @@ import { Invoker } from "./commands/invoker.js";
 import * as Commands from "./commands/commands/index.js";
 
 import "./utils/theme-change.js";
+import "./utils/toggleCalculator.js";
 
 const calculator = new Calculator();
 const invoker = new Invoker();
